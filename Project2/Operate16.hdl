@@ -1,0 +1,9 @@
+CHIP Operate16 {
+     IN in[16], z, n;
+     OUT out[16];
+
+     PARTS:
+     Mux16(a=in, b=false, sel=z, out=out1);
+     Not16(in=out1, out=out2);
+     Mux16(a=out1, b=out2, sel=n, out=out);
+}

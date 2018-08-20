@@ -1,0 +1,9 @@
+CHIP Ngzr{
+   IN in[16];
+   OUT ng, zr;
+
+   PARTS:
+   And(a=in[15], b=true, out=ng);
+   Or16Way(in=in, out=outzr);
+   Not(in=outzr, out=zr);
+}
