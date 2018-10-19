@@ -7,7 +7,7 @@ set load 0,
 set address 0,
 tick,
 output;
-tock,
+tock,m
 output;
 
 set load 1,
