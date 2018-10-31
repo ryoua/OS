@@ -19,28 +19,39 @@ def commandType(line):
 
 
 def main():
+    f = open('Mult.hack', 'w+')
+    f.write('')
     f = open('Mult.asm', 'r')
     for line in f.readlines():
         line = line.strip()
         if not len(line):
             continue
         if (commandType(line) == "A_COMMAND") | (commandType(line) == "L_COMMAND"):
-            # symbol(line)
-            print('123123132131')
             pass
         elif commandType(line) == 'C_COMMAND':
-            line_dest = line.split('=')[0]
-            line_comp = line.split('=')[1].split(';')[0]
-            line_jump = line.split('=')[1].split(';')[1]
+            if line.split('='):
+                line_dest = line.split('=')[0]
+                line_comp = line.split('=')[1]
+                # line_jump = line.split('=')[1].split(';')[1]
+                line_jump = "Null"
+
+            else:
+                line_dest = "Null"
+                line_comp = line.split(';')[0]
+                line_jump = line.split(';')[1]
 
             Binary_dest = dest(line_dest)
+            print(Binary_dest)
             Binary_comp = comp(line_comp)
+            print(Binary_comp)
             Binary_jump = jump(line_jump)
+            print(Binary_jump)
 
             Binary_Code = Binary_dest + Binary_comp + Binary_jump
-            print("1111111")
-            f = open('Mult.hack', 'w+')
-            f.write(Binary_Code)
+            print(Binary_Code)
+            print('------------------------------')
+            with open('Mult.hack', 'a') as f:
+                f.write(Binary_Code+'\n')
 
 main()
 
