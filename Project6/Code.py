@@ -1,30 +1,19 @@
-def dest(line):
-    dests = ['Null', 'M', 'D', 'MD', 'A', 'AM', 'AD', 'AMD']
-    bits = ['000', '001', '010', '011', '100', '101', '110', '111']
-    subscript = dests.index(line)
-    return bits[subscript]
+def dest(s):
+    dest_dict = {'null': '000', 'M': '001', 'D': '010', 'MD': '011', 'A': '100', 'AM': '101', 'AD': '110', 'AMD': '111'}
+    return dest_dict[s]
 
 
-def comp(line):
-    comps_a = ['0', '1', '-1', 'D', 'A', '!D',
-               '!A', '-D', '-A', 'D+1', 'A+1', 'D-1',
-               'A-1', 'D+A', 'D-A', 'A-D', 'D&A', 'D|A']
-    comps = ['0', '1', '-1', 'D', 'M', '!D',
-             '!M', '-D', '-M', 'D+1', 'M+1', 'D-1',
-             'M-1', 'M+D', 'D-M', 'M-D', 'D&M', 'D|M']
-    bits = ['101010', '111111', '111010', '001100', '110000', '001101',
-            '110001', '001111', '110011', '011111', '110111', '001110',
-            '110010', '000010', '010011', '000111', '000000', '010101']
-    if line in comps_a:
-        subscript = comps_a.index(line)
-        return '0' + bits[subscript]
-    elif line in comps:
-        subscript = comps.index(line)
-        return '1' + bits[subscript]
+def comp(s):
+    comp_dict = {'0': '0101010', '1': '0111111', '-1': '0111010', 'D': '0001100', 'A': '0110000',
+                 '!D': '0001101', '!A': '0110001', '-D': '0001111', '-A': '0110011', 'D+1': '0011111',
+                 'A+1': '0110111', 'D-1': '0001110', 'A-1': '0110010', 'D+A': '0000010', 'D-A': '0010011',
+                 'A-D': '0000111', 'D&A': '0000000', 'D|A': '0010101', 'M': '1110000', '!M': '1110001',
+                 '-M': '1110011', 'M+1': '1110111', 'M-1': '1110010', 'D+M': '1000010', 'D-M': '1010011',
+                 'M-D': '1000111', 'D&M': '1000000', 'D|M': '1010101'}
+    return comp_dict[s]
 
 
-def jump(line):
-    jumps = ['Null', 'JGT', 'JEQ', 'JGE', 'JLT', 'JNE', 'JLE', 'JMP']
-    bits = ['000', '001', '010', '011', '100', '101', '110', '111']
-    subscript = jumps.index(line)
-    return bits[subscript]
+def jump(s):
+    jump_dict = {'null': '000', 'JGT': '001', 'JEQ': '010', 'JGE': '011', 'JLT': '100', 'JNE': '101', 'JLE': '110',
+                 'JMP': '111'}
+    return jump_dict[s]
