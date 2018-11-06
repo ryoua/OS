@@ -27,6 +27,14 @@ def symbol(line):
 
 def dest(line):
     if line.find('=') > 0:
+        destlist1 = line.split('=')
+        return Code.dest(destlist1[0].strip(' '))
+    elif line.find(';') >= 0:
+        return Code.dest('null')
+
+
+def comp(line):
+    if line.find('=') > 0:
         complist1 = line.split('=')
         return Code.comp(complist1[1].strip('\n'))
     elif line.find(';') >= 0:
