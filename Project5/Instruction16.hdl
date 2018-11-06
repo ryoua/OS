@@ -1,0 +1,29 @@
+/** 将16位的指令，分解成13个具体的指令 */
+
+CHIP Instruction16 {
+
+    IN  in[16]; // Instruction for execution
+        
+    OUT a, zx, nx, zy, ny, f, no,  // Computer part for ALU
+        dA, dD, dM,                // Destination part
+        j1, j2, j3;                // Jump part
+        
+    PARTS:
+    And(a=in[12], b=in[15], out=a);
+    
+    And(a=in[5], b=in[15], out=dA);
+    And(a=in[4], b=in[15], out=dD);
+    And(a=in[3], b=in[15], out=dM);
+    
+    And(a=in[2], b=in[15], out=j1);
+    And(a=in[1], b=in[15], out=j2);
+    And(a=in[0], b=in[15], out=j3);
+    
+    And(a=in[11], b=in[15], out=zx);
+    And(a=in[10], b=in[15], out=nx);
+    And(a=in[9], b=in[15], out=zy);
+    And(a=in[8], b=in[15], out=ny);
+    And(a=in[7], b=in[15], out=f);
+    And(a=in[6], b=in[15], out=no);
+}
+    
