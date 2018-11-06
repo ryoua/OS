@@ -1,17 +1,3 @@
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: projects/04/fill/FillAutomatic
-
-// This script can be used to test the Fill program automatically, 
-// rather than interactively. Specifically, the script sets the keyboard
-// memory map (RAM[24576]) to 0, 1, and then again to 0. This simulates the 
-// acts of leaving the keyboard untouched, pressing some key, and then releasing
-// the key. After each on of these simulated events, the script outputs the values
-// of some selected registers from the screen memory map (RAM[16384]-RAM[24576]).
-// This is done in order to test that these registers are set to 000...0 or 111....1, 
-// as mandated by how the Fill program should react to the keyboard events.
-
 load Fill.hack,
 output-file FillAutomatic.out,
 compare-to FillAutomatic.cmp,
