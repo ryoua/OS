@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="47716bf0-4da1-4906-a928-9c562cc01452" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/ryoua.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project7/CodeWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project7/CodeWriter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project7/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project7/Parser.py" afterDir="false" />
-    </list>
+    <list default="true" id="47716bf0-4da1-4906-a928-9c562cc01452" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +12,7 @@
     <session id="1945594142">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
@@ -37,12 +31,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="619" />
+          <entry key="py" value="640" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="619" />
+          <entry key="Python" value="640" />
         </counts>
       </usages-collector>
     </session>
@@ -68,11 +62,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project7/CodeWriter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="20">
+              <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1541564916239" expanded="true" signature="94:202" ph="..." />
+                <marker date="1541565532274" expanded="true" signature="94:202" ph="..." />
+                <marker date="1541565532274" expanded="true" signature="238:242" ph="..." />
               </folding>
             </state>
           </provider>
@@ -163,7 +158,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1066" y="33" width="980" height="1050" extended-state="0" />
+    <frame x="331" y="119" width="980" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.28804347" />
@@ -212,11 +207,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Project7/CodeWriter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="20">
+          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1541564916239" expanded="true" signature="94:202" ph="..." />
+            <marker date="1541565532274" expanded="true" signature="94:202" ph="..." />
+            <marker date="1541565532274" expanded="true" signature="238:242" ph="..." />
           </folding>
         </state>
       </provider>
