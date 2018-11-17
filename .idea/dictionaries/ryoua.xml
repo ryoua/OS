@@ -3,8 +3,15 @@
     <words>
       <w>arithmatic</w>
       <w>codeflag</w>
+      <w>ctype</w>
+      <w>deleteflag</w>
+      <w>filelist</w>
       <w>filetuple</w>
+      <w>labelstring</w>
+      <w>numlocals</w>
+      <w>returnflag</w>
       <w>rfile</w>
+      <w>staticname</w>
       <w>wfile</w>
     </words>
   </dictionary>

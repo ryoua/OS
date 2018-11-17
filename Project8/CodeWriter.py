@@ -2,6 +2,7 @@ import sys, os
 
 CODEFLAG1 = 0
 CODEFLAG2 = 0
+RETURNFLAG = 1
 
 
 def setFileName(filename):
@@ -26,20 +27,20 @@ def writeArithmatic(wfile, command):
         wfile.write('@SP\nM=M-1\nA=M\nM=!M\n@SP\nM=M+1\n')
     elif command == 'eq':
         wfile.write('@SP\nM=M-1\nA=M\nD=M\n@SP\nM=M-1\nA=M\nD=D-M\n@RET_TRUE' + str(CODEFLAG1) + '\
-            \nD;JEQ\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
-            \n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
+			\nD;JEQ\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
+			\n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
         CODEFLAG1 += 1
         CODEFLAG2 += 1
     elif command == 'gt':
         wfile.write('@SP\nM=M-1\nA=M\nD=M\n@SP\nM=M-1\nA=M\nD=M-D\n@RET_TRUE' + str(CODEFLAG1) + '\
-            \nD;JGT\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
-            \n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
+			\nD;JGT\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
+			\n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
         CODEFLAG1 += 1
         CODEFLAG2 += 1
     elif command == 'lt':
         wfile.write('@SP\nM=M-1\nA=M\nD=M\n@SP\nM=M-1\nA=M\nD=M-D\n@RET_TRUE' + str(CODEFLAG1) + '\
-            \nD;JLT\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
-            \n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
+			\nD;JLT\nD=0\n@CONTINUE' + str(CODEFLAG2) + '\n0;JMP\n(RET_TRUE' + str(CODEFLAG1) + ')\nD=-1\
+			\n(CONTINUE' + str(CODEFLAG2) + ')\n@SP\nA=M\nM=D\n@SP\nM=M+1\n')
         CODEFLAG1 += 1
         CODEFLAG2 += 1
 
@@ -96,6 +97,49 @@ def writePushPop(wfile, command, segment, index, filename):
         if segment == 'static':
             staticname = filename.strip('.vm') + '.' + index
             wfile.write('@SP\nM=M-1\nA=M\nD=M\n@' + staticname + '\nM=D\n')
+        if segment == 'temp':
+            wfile.write('@SP\nM=M-1\nA=M\nD=M\n@R5\n')
+            for i in range(0, int(index)):
+                wfile.write('A=A+1\n')
+            wfile.write('M=D\n')
+
+
+def writeLabel(wfile, labelstring):
+    wfile.write('(' + labelstring + ')\n')
+
+
+def writeGoto(wfile, labelstring):
+    wfile.write('@' + labelstring + '\n0;JMP\n')
+
+
+def writeIf(wfile, labelstring):
+    wfile.write('@SP\nM=M-1\nA=M\nD=M\n@' + labelstring + '\nD;JNE\n')
+
+
+def writeFunction(wfile, functionName, numlocals):
+    wfile.write('(' + functionName + ')\n@LCL\nD=M\n@SP\nM=D\n')
+    for i in range(0, int(numlocals)):
+        wfile.write('@SP\nA=M\nM=0\nD=A+1\n@SP\nM=D\n')
+
+
+def writeCall(wfile, functionName, numArgs):
+    global RETURNFLAG
+    wfile.write('@return_address' + str(RETURNFLAG) + '\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\
+		\n@LCL\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n@ARG\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\
+		\n@THIS\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n@THAT\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\
+		\n@' + numArgs + '\nD=A\n@5\nD=D+A\n@SP\nD=M-D\n@ARG\nM=D\n@SP\nD=M\n@LCL\nM=D\
+		\n@' + functionName + '\n0;JMP\n(return_address' + str(RETURNFLAG) + ')\n')
+    RETURNFLAG += 1
+
+
+def writeReturn(wfile):
+    wfile.write('@LCL\nD=M\n@R13\nM=D\n@5\nD=D-A\nA=D\nD=M\
+		\n@R14\nM=D\n@SP\nM=M-1\nA=M\nD=M\n@ARG\nA=M\
+		\nM=D\n@ARG\nD=M+1\n@SP\nM=D\n@R13\nD=M\nD=D-1\
+		\nA=D\nD=M\n@THAT\nM=D\n@R13\nD=M\nD=D-1\nD=D-1\
+		\nA=D\nD=M\n@THIS\nM=D\n@R13\nD=M\nD=D-1\nD=D-1\
+		\nD=D-1\nA=D\nD=M\n@ARG\nM=D\n@R13\nD=M\nD=D-1\
+		\nD=D-1\nD=D-1\nD=D-1\nA=D\nD=M\n@LCL\nM=D\n@R14\nA=M\n0;JMP\n')
 
 
 def Close(wfile):
